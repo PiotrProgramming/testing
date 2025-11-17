@@ -1,0 +1,413 @@
+import React from "react";
+
+// Stanisz-Transport - Single-file React component (TailwindCSS required)
+// Usage:
+// 1) Create a React app with Tailwind (e.g. create-next-app or CRA + Tailwind)
+// 2) Drop this component into a page (e.g. pages/index.jsx) and ensure Tailwind is enabled.
+// 3) Replace placeholder images and texts with real content and integrate backend as needed.
+
+export default function StaniszRedesign() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <Header />
+      <main>
+        <Hero />
+        <TrustedBar />
+        <Services />
+        <Numbers />
+        <Fleet />
+        <HowWeWork />
+        <ESG />
+        <Contact />
+        <NewsPreview />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="bg-white shadow sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-md bg-gradient-to-br from-orange-500 to-yellow-400 flex items-center justify-center text-white font-bold">S</div>
+          <div>
+            <a className="text-lg font-semibold">Stanisz‑Transport</a>
+            <div className="text-xs text-gray-500">Profesjonalny transport & spedycja</div>
+          </div>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <a className="hover:text-orange-600" href="#uslugi">Usługi</a>
+          <a className="hover:text-orange-600" href="#flota">Flota</a>
+          <a className="hover:text-orange-600" href="#esg">ESG</a>
+          <a className="hover:text-orange-600" href="#kontakt">Kontakt</a>
+          <a className="ml-4 inline-block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow">Poproś o ofertę</a>
+        </nav>
+
+        <div className="md:hidden">
+          <MobileMenu />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function MobileMenu() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="relative">
+      <button onClick={() => setOpen(!open)} className="p-2 rounded-md border">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md p-4">
+          <a className="block py-2 border-b" href="#uslugi">Usługi</a>
+          <a className="block py-2 border-b" href="#flota">Flota</a>
+          <a className="block py-2 border-b" href="#esg">ESG</a>
+          <a className="block py-2" href="#kontakt">Kontakt</a>
+          <div className="pt-3"><a className="block bg-orange-500 text-white text-center py-2 rounded" href="#kontakt">Poproś o ofertę</a></div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Kompleksowy transport drogowy i spedycja — na czas, bez kompromisów</h1>
+          <p className="mt-6 text-gray-700 max-w-xl">Stanisz‑Transport to partner, który dostarcza rozwiązania logistyczne dostosowane do Twojej branży. Dysponujemy nowoczesną flotą i doświadczonym zespołem, gwarantując terminowość oraz bezpieczeństwo ładunków.</p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#kontakt" className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-md font-medium">Poproś o ofertę</a>
+            <a href="#uslugi" className="inline-block border border-gray-200 px-5 py-3 rounded-md text-gray-700">Poznaj nasze usługi</a>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-gray-600">
+            <Stat label="Lata doświadczenia" value="18+" />
+            <Stat label="Pojazdów" value="45" />
+            <Stat label="Kraje" value="12" />
+            <Stat label="Zaufanych klientów" value="200+" />
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg bg-gray-200">
+            <img src="/placeholder-hero.jpg" alt="Flota Stanisz" className="w-full h-full object-cover" />
+          </div>
+
+          <div className="absolute left-6 bottom-6 bg-white/90 backdrop-blur-md p-4 rounded-lg shadow-md w-11/12 md:w-3/4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-md bg-orange-500 text-white flex items-center justify-center font-bold">24</div>
+              <div>
+                <div className="text-sm text-gray-500">Monitorowany transport</div>
+                <div className="font-semibold">Śledzenie ładunków 24/7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-tr from-white to-gray-50 border-t">
+        <div className="max-w-7xl mx-auto px-6 py-6 text-xs text-gray-500">Uwaga: obrazy i treści są poglądowe — zastąp je treściami firmowymi.</div>
+      </div>
+    </section>
+  );
+}
+
+function Stat({ label, value }) {
+  return (
+    <div className="flex flex-col">
+      <div className="text-xl font-bold">{value}</div>
+      <div className="text-xs">{label}</div>
+    </div>
+  );
+}
+
+function TrustedBar() {
+  return (
+    <div className="bg-white py-4 border-b">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+        <div className="flex items-center gap-6 text-sm text-gray-500">
+          <div className="flex items-center gap-3"><img src="/icon-check.svg" alt="" className="w-6"/> Certyfikaty</div>
+          <div className="flex items-center gap-3"><img src="/icon-globe.svg" alt="" className="w-6"/> Transport międzynarodowy</div>
+          <div className="flex items-center gap-3"><img src="/icon-shield.svg" alt="" className="w-6"/> Ubezpieczenie ładunku</div>
+        </div>
+        <div className="text-sm text-gray-600">Zaufali nam — klienci z branży przemysłowej, e-commerce i FMCG</div>
+      </div>
+    </div>
+  );
+}
+
+function Services() {
+  const services = [
+    { title: "Transport krajowy", desc: "Krajowe przewozy całopojazdowe i częściowe; elastyczne terminy i konkurencyjne stawki." },
+    { title: "Transport międzynarodowy", desc: "Obsługa tras europejskich z pełną dokumentacją i wsparciem celnym." },
+    { title: "Spedycja", desc: "Kompleksowa spedycja i logistyka łańcucha dostaw, optymalizacja kosztów." },
+    { title: "Transport towarów specjalnych", desc: "Przewozy ładunków ponadnormatywnych i niebezpiecznych (ADR)" },
+  ];
+
+  return (
+    <section id="uslugi" className="py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 className="text-3xl font-bold">Nasze usługi</h2>
+            <p className="mt-4 text-gray-600">Oferujemy szeroki zakres usług transportowych dostosowanych do potrzeb klienta. Poniżej przegląd kluczowych obszarów naszej działalności.</p>
+
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {services.map((s) => (
+                <div key={s.title} className="border rounded-lg p-4 shadow-sm bg-white">
+                  <h3 className="font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{s.desc}</p>
+                  <a href="#kontakt" className="mt-4 inline-block text-sm text-orange-500">Poproś o ofertę →</a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden shadow-lg bg-gray-100 p-6">
+            <h3 className="font-semibold">Dlaczego klienci wybierają nas?</h3>
+            <ul className="mt-4 space-y-3 text-gray-600">
+              <li>Monitoring przesyłek 24/7</li>
+              <li>Nowoczesna flota zgodna z normami EURO</li>
+              <li>Doświadczeni kierowcy i spedycja</li>
+              <li>Elastyczne i skalowalne rozwiązania</li>
+            </ul>
+
+            <div className="mt-6">
+              <a className="inline-block bg-orange-500 text-white px-4 py-2 rounded-md" href="#kontakt">Porozmawiajmy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Numbers() {
+  const items = [
+    { num: "12k+", label: "Zleceń rocznie" },
+    { num: "45", label: "Pojazdów" },
+    { num: "98%", label: "Terminowość" },
+    { num: "24/7", label: "Wsparcie" },
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {items.map((it) => (
+            <div key={it.label} className="bg-white p-6 rounded-lg shadow text-center">
+              <div className="text-2xl font-extrabold">{it.num}</div>
+              <div className="text-sm text-gray-600 mt-2">{it.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Fleet() {
+  const fleet = [
+    { name: "MAN TGS", info: "Ciężarówka 40t, plandeka" },
+    { name: "Volvo FH", info: "Ciężarówka 40t, kontener" },
+    { name: "Scania R", info: "Ciężarówka 24t, chłodnia" },
+  ];
+
+  return (
+    <section id="flota" className="py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold">Nasza flota</h2>
+        <p className="mt-3 text-gray-600">Nowoczesne pojazdy spełniające normy emisji, regularnie serwisowane i gotowe do pracy w systemie 24/7.</p>
+
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {fleet.map((v) => (
+            <div key={v.name} className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="w-full h-40 bg-gray-200 flex items-center justify-center"> <img src="/placeholder-truck.jpg" alt={v.name} className="h-full w-full object-cover"/> </div>
+              <div className="p-4">
+                <div className="font-semibold">{v.name}</div>
+                <div className="text-sm text-gray-600 mt-1">{v.info}</div>
+                <div className="mt-4"><a className="text-orange-500 text-sm" href="#kontakt">Zapytaj o dostępność →</a></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowWeWork() {
+  const steps = [
+    { title: "Analiza potrzeb", desc: "Rozpoczynamy od zrozumienia Twoich wymagań i zaplanowania optymalnej trasy." },
+    { title: "Planowanie trasy", desc: "Dobieramy optymalny środek transportu i plan działania." },
+    { title: "Realizacja", desc: "Kierowcy i spedycja realizują transport z pełnym monitoringiem." },
+    { title: "Obsługa posprzedażowa", desc: "Wsparcie po dostawie i raport końcowy." },
+  ];
+
+  return (
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold">Jak pracujemy</h2>
+        <p className="mt-3 text-gray-600">Przejrzysty proces współpracy, który gwarantuje terminowość i minimalizuje ryzyko opóźnień.</p>
+
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((s) => (
+            <div key={s.title} className="p-6 bg-gray-50 rounded-lg shadow-sm">
+              <div className="text-lg font-semibold">{s.title}</div>
+              <div className="mt-3 text-sm text-gray-600">{s.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ESG() {
+  return (
+    <section id="esg" className="py-16 bg-gradient-to-r from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 className="text-3xl font-bold">Zrównoważony rozwój (ESG)</h2>
+          <p className="mt-4 text-gray-600">Dbamy o środowisko — inwestujemy w flotę spełniającą normy, stosujemy optymalizację tras i praktyki redukujące emisję CO₂.</p>
+
+          <ul className="mt-6 space-y-3 text-gray-600">
+            <li>Flota zgodna z normą EURO 6</li>
+            <li>Szkolenia ekologiczne dla kierowców</li>
+            <li>Optymalizacja tras i konsolidacja ładunków</li>
+            <li>Raporty emisji i działania redukcyjne</li>
+          </ul>
+
+          <div className="mt-6">
+            <a className="inline-block bg-orange-500 text-white px-4 py-2 rounded-md" href="#kontakt">Dowiedz się więcej</a>
+          </div>
+        </div>
+
+        <div className="rounded-lg overflow-hidden shadow bg-white p-6">
+          <div className="w-full h-48 bg-gray-200 flex items-center justify-center"> <img src="/placeholder-esg.jpg" alt="ESG" className="w-full h-full object-cover"/> </div>
+          <div className="mt-4 text-sm text-gray-600">Przykładowe dane: redukcja emisji o 12% rok do roku, modernizacja floty.</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="kontakt" className="py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 className="text-3xl font-bold">Skontaktuj się z nami</h2>
+          <p className="mt-3 text-gray-600">Chętnie przygotujemy ofertę dopasowaną do Twoich potrzeb. Wypełnij formularz lub skontaktuj się bezpośrednio.</p>
+
+          <div className="mt-6 space-y-4 text-sm text-gray-600">
+            <div><strong>Adres:</strong> Ul. Przykładowa 1, 00-000 Miasto</div>
+            <div><strong>Telefon:</strong> +48 123 456 789</div>
+            <div><strong>Email:</strong> biuro@stanisz-transport.com</div>
+          </div>
+
+          <div className="mt-6">
+            <iframe title="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2446.0000000000005!2d21.0000000000000!3d52.0000000000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc0000000001%3A0x0000000000000000!2sWarsaw!5e0!3m2!1sen!2spl!4v0000000000000" className="w-full h-48 rounded-md border" />
+          </div>
+        </div>
+
+        <div>
+          <div className="bg-white p-6 rounded-lg shadow">
+            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Formularz wysłany (demo)'); }}>
+              <div>
+                <label className="text-sm">Imię i nazwisko</label>
+                <input required className="mt-1 block w-full border rounded px-3 py-2" />
+              </div>
+              <div>
+                <label className="text-sm">Email</label>
+                <input type="email" required className="mt-1 block w-full border rounded px-3 py-2" />
+              </div>
+              <div>
+                <label className="text-sm">Typ zapytania</label>
+                <select className="mt-1 block w-full border rounded px-3 py-2">
+                  <option>Transport krajowy</option>
+                  <option>Transport międzynarodowy</option>
+                  <option>Spedycja</option>
+                  <option>Inne</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm">Wiadomość</label>
+                <textarea required className="mt-1 block w-full border rounded px-3 py-2" rows={4} />
+              </div>
+              <div className="flex items-center justify-between">
+                <button className="bg-orange-500 text-white px-4 py-2 rounded-md">Wyślij zapytanie</button>
+                <div className="text-xs text-gray-500">Odpowiemy w ciągu 24 godzin roboczych</div>
+              </div>
+            </form>
+          </div>
+
+          <div className="mt-6 text-sm text-gray-600 bg-gray-50 p-4 rounded">
+            <div className="font-semibold">Szybkie numery</div>
+            <div className="mt-2">Dział handlowy: +48 123 456 789</div>
+            <div>Obsługa zleceń: +48 987 654 321</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NewsPreview() {
+  const news = [
+    { title: "Nowa flota z normą EURO 6", date: "2025-05-12" },
+    { title: "Rozszerzenie tras o kraje bałtyckie", date: "2025-03-20" },
+  ];
+
+  return (
+    <section className="py-12 border-t">
+      <div className="max-w-7xl mx-auto px-6">
+        <h3 className="text-xl font-semibold">Aktualności</h3>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {news.map(n => (
+            <article key={n.title} className="bg-white p-4 rounded shadow-sm">
+              <div className="text-sm text-gray-500">{n.date}</div>
+              <div className="font-semibold mt-2">{n.title}</div>
+              <div className="mt-3 text-sm text-gray-600">Krótki opis wydarzenia firmowego lub branżowego. Rozwiń w panelu Aktualności.</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-gray-900 text-gray-200 mt-12">
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div className="text-lg font-bold">Stanisz‑Transport</div>
+          <div className="mt-3 text-sm">Profesjonalne rozwiązania logistyczne i transportowe.</div>
+        </div>
+
+        <div>
+          <div className="font-semibold">Kontakt</div>
+          <div className="mt-2 text-sm">biuro@stanisz-transport.com</div>
+          <div className="text-sm">+48 123 456 789</div>
+        </div>
+
+        <div>
+          <div className="font-semibold">Szybkie linki</div>
+          <div className="mt-2 text-sm"><a href="#uslugi" className="hover:underline">Usługi</a></div>
+          <div className="text-sm"><a href="#flota" className="hover:underline">Flota</a></div>
+          <div className="text-sm"><a href="#kontakt" className="hover:underline">Kontakt</a></div>
+        </div>
+      </div>
+
+      <div className="border-t border-gray-800 text-xs text-gray-500 py-4 text-center">© {new Date().getFullYear()} Stanisz‑Transport. Wszelkie prawa zastrzeżone.</div>
+    </footer>
+  );
+}
